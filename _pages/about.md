@@ -20,8 +20,10 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I'm a first year PhD student advised by [Dr. Joshua Smith](https://www.cs.washington.edu/people/faculty/jrs) in the [Sensors and System Lab](https://sensor.cs.washington.edu/).
+I'm a first year PhD student advised by [Dr. Joshua Smith](https://www.cs.washington.edu/people/faculty/jrs) in the [Sensors and Systems Lab](https://sensor.cs.washington.edu/) at the University of Washington. My research focuses on robotic manipulation in cluttered, unstructured environments — the kind of settings you encounter in a kitchen cabinet or a storage bin, where objects collide, novel items appear, and safe control matters.
 
-<!-- Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+One thread of my work addresses object rearrangement in clutter: given a bin packed with objects, how does a robot plan and execute a sequence of pushes to retrieve a target? I'm building an end-to-end system that uses GPU-parallel MCTS to search over push sequences in simulation, then hands off to an MPPI controller that re-optimizes each motion online — rolling out hundreds of trajectories simultaneously in Isaac Lab and closing the loop against a real UR16e at control frequency.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+The other thread focuses on scene understanding. Effective manipulation requires knowing not just what objects are present, but how they relate to each other spatially. I'm developing a neural architecture that takes a short sequence of RGB frames and produces a structured scene graph — nodes are objects, edges are labeled spatial predicates like *on_top_of* or *left_of*. Temporal context across frames lets the model resolve ambiguities no single view could answer, using a DINO Vision Transformer for feature extraction, a BiLSTM for temporal aggregation, and iterative message passing for relational reasoning.
+
+Before starting my PhD, I worked on [vision-based assessment of cranberry crop ripening](https://arxiv.org/abs/2309.00028) using deep learning applied to aerial imagery.

@@ -9,41 +9,40 @@ related_publications: # comma-separated bib keys once published
 selected: true
 ---
 
-<!-- TODO: teaser — uncomment one of the options below and fill in the path -->
-<!--
 <div class="row mt-3">
-  <div class="col-12">
-    {% include video.html path="assets/video/teaser.mp4" class="img-fluid rounded z-depth-1" autoplay=true loop=true muted=true %}
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.html path="assets/video/MCTS1.gif" title="MCTS planning demo" class="img-fluid rounded z-depth-1" %}
+    <div class="caption">MCTS planning a push sequence in simulation.</div>
+  </div>
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.html path="assets/video/MCTS2.gif" title="MPPI execution demo" class="img-fluid rounded z-depth-1" %}
+    <div class="caption">MPPI controller executing the plan on the real robot.</div>
   </div>
 </div>
-<div class="caption">
-  System overview: the planner finds a push sequence in simulation (left), which the MPPI controller executes on the real robot (right).
-</div>
--->
 
 ## Overview
 
 Rearranging a target object out of a cluttered bin requires reasoning about cascading contacts across a long horizon — every push reshapes the environment, and mistakes are hard to undo. This project builds an end-to-end system that addresses both halves of the problem: **planning** a sequence of pushes that solves the rearrangement task, and **executing** each push on a real robot in a way that is robust to contact uncertainty.
 
-The planner uses Monte-Carlo Tree Search (MCTS) or RRT with a GPU-accelerated physics simulator as a black-box forward model, evaluating thousands of candidate action sequences in parallel to find a collision-aware push plan. That plan is then handed off to an MPPI (Model Predictive Path Integral) controller, which re-optimizes each step online by rolling out 750–1000 trajectory samples simultaneously in Isaac Lab, closing the loop against the real robot at control frequency.
+The planner uses Monte-Carlo Tree Search (MCTS) with a GPU-accelerated physics simulator as a black-box forward model, evaluating thousands of candidate action sequences in parallel to find a collision-aware push plan. That plan is then handed off to an MPPI (Model Predictive Path Integral) controller, which re-optimizes each step online by rolling out 750–1000 trajectory samples simultaneously in Isaac Lab, closing the loop against the real robot at control frequency.
 
 <!-- TODO: system diagram — replace path with your pipeline figure -->
-<!--
+
 <div class="row mt-3">
   <div class="col-12">
-    {% include figure.html path="assets/img/system_diagram.jpg" title="System pipeline" class="img-fluid rounded z-depth-1" %}
+    {% include figure.html path="assets/img/system_diagram.png" title="System pipeline" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
 <div class="caption">
-  The two-stage pipeline: a sampling-based planner produces a waypoint sequence offline; the MPPI controller tracks it online against the real robot.
+  The two-stage pipeline: a sampling-based planner produces a coarse action sequence offline; the MPPI controller tracks it online against the real robot.
 </div>
--->
+
 
 ---
 
 ## Planning
 
-A simulator-agnostic abstraction layer (supporting Genesis and NVIDIA IsaacLab as backends) exposes a common `batch_evaluate()` interface, so planners can run against any physics backend without modification. MCTS uses UCB1 selection with virtual visit counts for safe parallel expansion; RRT weights tree growth by rollout reward to concentrate exploration on promising regions. Both operate over a discrete push action space (cardinal and diagonal directions, multiple heights) and run a multi-rollout verification pass to filter brittle plans.
+A simulator-agnostic abstraction layer (supporting Genesis and NVIDIA IsaacLab as backends) exposes a common `batch_evaluate()` interface, so the planner can run against any physics backend without modification. MCTS uses UCB1 selection with virtual visit counts for safe parallel expansion, operating over a discrete push action space (cardinal and diagonal directions, multiple heights) and running a multi-rollout verification pass to filter brittle plans.
 
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
@@ -52,13 +51,6 @@ A simulator-agnostic abstraction layer (supporting Genesis and NVIDIA IsaacLab a
     {% include video.html path="assets/video/mcts_planning.mp4" class="img-fluid rounded z-depth-1" autoplay=true loop=true muted=true %}
     -->
     <div class="caption">MCTS solving a bin-clearing task in simulation.</div>
-  </div>
-  <div class="col-sm mt-3 mt-md-0">
-    <!-- TODO: planning result image/gif — replace path below -->
-    <!--
-    {% include figure.html path="assets/img/rrt_solution.jpg" title="RRT solution path" class="img-fluid rounded z-depth-1" %}
-    -->
-    <div class="caption">RRT solution path overlaid on the bin scene.</div>
   </div>
 </div>
 
@@ -76,18 +68,18 @@ The MPPI controller treats each of N parallel Isaac Lab environments as one cand
     -->
     <div class="caption">750 parallel MPPI trajectory samples evaluated in Isaac Lab.</div>
   </div>
-  <div class="col-sm mt-3 mt-md-0">
+  <!-- <div class="col-sm mt-3 mt-md-0"> -->
     <!-- TODO: real robot execution video -->
     <!--
     {% include video.html path="assets/video/real_robot.mp4" class="img-fluid rounded z-depth-1" autoplay=true loop=true muted=true %}
     -->
-    <div class="caption">UR16e executing a planned push sequence on the real robot.</div>
-  </div>
+    <!-- <div class="caption">UR16e executing a planned push sequence on the real robot.</div>
+  </div> -->
 </div>
-
+<!-- 
 ---
 
-## Results
+## Results -->
 
 <!-- TODO: results figures — replace paths below; add or remove columns as needed -->
 <!--
@@ -98,7 +90,7 @@ The MPPI controller treats each of N parallel Isaac Lab environments as one cand
   </div>
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.html path="assets/img/planning_time.jpg" title="Planning time comparison" class="img-fluid rounded z-depth-1" %}
-    <div class="caption">Wall-clock planning time: MCTS vs. RRT across backends.</div>
+    <div class="caption">Wall-clock planning time across backends.</div>
   </div>
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.html path="assets/img/bin_example.jpg" title="Example bin scene" class="img-fluid rounded z-depth-1" %}
