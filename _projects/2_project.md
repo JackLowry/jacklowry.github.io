@@ -4,9 +4,9 @@ title: "Spatio-Temporal Scene Graph Generation from Image Sequences"
 description: A neural architecture that generates structured scene graphs from multi-frame RGB observations, using temporal context to improve object and relationship prediction on tabletop manipulation scenes.
 img: # assets/img/scene_graph_teaser.jpg
 importance: 2
-category: research
+category: wip
 related_publications: # comma-separated bib keys once published
-selected: true
+selected: false
 ---
 
 <!-- TODO: teaser — uncomment and fill in path -->
