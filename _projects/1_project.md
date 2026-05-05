@@ -46,11 +46,12 @@ A simulator-agnostic abstraction layer (supporting Genesis and NVIDIA IsaacLab a
 
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
-    <!-- TODO: planning sim video — replace path below -->
-    <!--
-    {% include video.html path="assets/video/mcts_planning.mp4" class="img-fluid rounded z-depth-1" autoplay=true loop=true muted=true %}
-    -->
-    <div class="caption">MCTS solving a bin-clearing task in simulation.</div>
+    {% include figure.html path="assets/video/MCTS3.gif" title="Non-prehensile clearing" class="img-fluid rounded z-depth-1" %}
+    <div class="caption">Non-prehensile bin clearing via planned push sequences.</div>
+  </div>
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.html path="assets/video/MCTS4.gif" title="Emergent bridging behavior" class="img-fluid rounded z-depth-1" %}
+    <div class="caption">Emergent bridging behavior discovered by MCTS.</div>
   </div>
 </div>
 
