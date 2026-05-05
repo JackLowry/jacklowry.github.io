@@ -76,28 +76,6 @@ The MPPI controller treats each of N parallel Isaac Lab environments as one cand
     <!-- <div class="caption">UR16e executing a planned push sequence on the real robot.</div>
   </div> -->
 </div>
-<!-- 
----
-
-## Results -->
-
-<!-- TODO: results figures — replace paths below; add or remove columns as needed -->
-<!--
-<div class="row mt-3">
-  <div class="col-sm mt-3 mt-md-0">
-    {% include figure.html path="assets/img/success_rate.jpg" title="Success rate vs. object count" class="img-fluid rounded z-depth-1" %}
-    <div class="caption">Success rate vs. number of obstacles.</div>
-  </div>
-  <div class="col-sm mt-3 mt-md-0">
-    {% include figure.html path="assets/img/planning_time.jpg" title="Planning time comparison" class="img-fluid rounded z-depth-1" %}
-    <div class="caption">Wall-clock planning time across backends.</div>
-  </div>
-  <div class="col-sm mt-3 mt-md-0">
-    {% include figure.html path="assets/img/bin_example.jpg" title="Example bin scene" class="img-fluid rounded z-depth-1" %}
-    <div class="caption">Example 20-object bin-clearing task.</div>
-  </div>
-</div>
--->
 
 ---
 
